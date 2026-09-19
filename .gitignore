@@ -1,0 +1,5 @@
+__pycache__/
+*.log
+.codeartsdoer/
+.codegraph/
+.merkle-snapshot.json
