@@ -38,7 +38,6 @@ CREATE_NO_WINDOW = 0x08000000
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 LOG_FILE = os.path.join(BASE_DIR, "fan_guard.log")
-BAT_FILE = os.path.join(BASE_DIR, "plug_off.bat")
 CONFIG_PATH = os.path.join(BASE_DIR, "config.json")
 AUTH_PATH = os.path.expanduser("~/.config/mijia-api/auth.json")
 PYTHON_EXE = sys.executable.replace("pythonw.exe", "python.exe")
@@ -112,22 +111,8 @@ def set_plug(on):
         return False
 
 
-def send_off_fallback():
-    try:
-        proc = subprocess.run(
-            [BAT_FILE],
-            cwd=BASE_DIR,
-            timeout=40,
-            creationflags=CREATE_NO_WINDOW,
-        )
-        log("plug_off.bat 兜底完成 退出码=%s" % proc.returncode)
-    except Exception as e:
-        log("bat 兜底失败 %s" % e)
-
-
 def do_shutdown_guard(_done):
-    if not set_plug(False):
-        send_off_fallback()
+    set_plug(False)
     log("关闭指令处理完毕")
     _done.set()
 
