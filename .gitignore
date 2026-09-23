@@ -3,3 +3,4 @@ __pycache__/
 .codeartsdoer/
 .codegraph/
 .merkle-snapshot.json
+config.json
