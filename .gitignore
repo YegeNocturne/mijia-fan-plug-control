@@ -4,3 +4,5 @@ __pycache__/
 .codegraph/
 .merkle-snapshot.json
 config.json
+logo.png
+logo.ico

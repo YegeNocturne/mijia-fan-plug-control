@@ -25,7 +25,9 @@ pip install mijia-api
 | `fan_guard_start.vbs` | 无窗口启动脚本，供开机自启使用 |
 | `relogin.py` | 米家认证过期时重新扫码登录 |
 | `config.json` | 本地配置（仓库内未包含，程序首次运行自动生成） |
-| `convert_logo.py` | logo生成脚本：由 `logo.png` 生成 `logo.ico` |
+| `logo.png` | 可选：自定义图标原图（仓库内未包含） |
+| `logo.ico` | 可选：由 `logo.png` 生成的托盘图标（仓库内未包含） |
+| `convert_logo.py` | 一次性脚本：由 `logo.png` 生成 `logo.ico` |
 
 ## 配置
 
@@ -66,10 +68,31 @@ pip install mijia-api
 
 托盘图标左键打开面板（可打开配置文件、重载配置、重新登录认证），右键菜单可退出。
 
+## 自定义图标
+
+图标为可选配置，仓库不包含图标文件：
+
+- 没有 `logo.png` / `logo.ico` 时使用默认图标：托盘为系统默认应用图标，面板窗口为 tk 默认图标
+- 需要自定义时，把图标图片命名为 `logo.png` 放到项目目录，执行：
+
+  ```bash
+  python convert_logo.py
+  ```
+
+  生成 `logo.ico` 后重启程序。托盘图标使用 `logo.ico`，面板窗口优先使用 `logo.png`（缺失时用 `logo.ico`）。
+
+### 图标文件要求
+
+- 文件名固定为 `logo.png`（原图）和 `logo.ico`（托盘图标），放在项目根目录（与 `fan_guard.py` 同级）
+- `logo.png` 必须为 **PNG** 格式（tk 不识别 JPG/BMP 等），且必须为**正方形**，推荐 256×256；非正方形会被拉伸变形
+- `logo.ico` 由 `convert_logo.py` 从 `logo.png` 生成，内含 16/24/32/48 四种尺寸
+- 只提供 `logo.png` 而不生成 `logo.ico` 时，面板窗口图标生效，托盘图标仍为系统默认
+
+`logo.png` 与 `logo.ico` 已加入 `.gitignore`，不会提交到仓库。
+
 ## 上游与致谢
 
 - 插座控制基于 [Do1e/mijia-api](https://github.com/Do1e/mijia-api)，采用 GPL-3.0 许可
-- 程序图标取自 [mijia-api](https://github.com/Do1e/mijia-api) 项目
 
 ## 开源许可
 

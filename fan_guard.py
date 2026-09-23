@@ -305,6 +305,16 @@ def panel_main():
         root.resizable(False, False)
         root.attributes("-topmost", True)
 
+        icon_png = os.path.join(BASE_DIR, "logo.png")
+        icon_ico = os.path.join(BASE_DIR, "logo.ico")
+        try:
+            if os.path.exists(icon_png):
+                root.iconphoto(True, tk.PhotoImage(file=icon_png))
+            elif os.path.exists(icon_ico):
+                root.iconbitmap(icon_ico)
+        except Exception:
+            pass
+
         info_var = tk.StringVar()
         status_var = tk.StringVar()
 
