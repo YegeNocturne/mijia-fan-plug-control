@@ -43,9 +43,9 @@ AUTH_PATH = os.path.expanduser("~/.config/mijia-api/auth.json")
 PYTHON_EXE = sys.executable.replace("pythonw.exe", "python.exe")
 
 DEFAULT_CONFIG = {
-    "ssid_prefix": "RainOfChaos",
-    "device_name": "散热器插座",
-    "log_enabled": False,
+    "ssid_prefix": "YourWLANSSID",#你的WLAN名称
+    "device_name": "散热器插座",#需要开机运行，关机停止的米家设备名称
+    "log_enabled": False,#是否记录日志，默认否
 }
 
 CONFIG = dict(DEFAULT_CONFIG)
